@@ -1,0 +1,17 @@
+# Vercel
+.vercel
+
+# 로컬 환경변수 (어드민 추가 시 사용)
+.env
+.env.local
+.env*.local
+
+# OS / 편집기
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
+
+# Office 임시 파일
+~$*
