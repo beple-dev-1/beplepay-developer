@@ -1445,8 +1445,22 @@ a:hover, .text-link:hover { border-bottom-color: var(--color-primary); }
         <tr><td><code data-no-md>context7</code></td><td>프로젝트 단위 · <code data-no-md>.mcp.json</code></td><td>라이브러리 · 프레임워크 공식 문서 조회</td><td>구현 · 계획 단계</td></tr>
         <tr><td><code data-no-md>gitlab</code></td><td>프로젝트 단위 · <code data-no-md>.mcp.json</code> (<strong>사용 안 함</strong>)</td><td>MR 조회 · 댓글 — <code data-no-md class="inl">/mr-review</code>를 쓰기 전까지 이중으로 막아 둠</td><td>(전환 후) mr-review</td></tr>
         <tr><td><code data-no-md>jexstudio-http</code></td><td>사용자 단위 · 각자 PC에 직접 설치</td><td>IDO/SVC/CMO/IMO/WSVC 부품 등록 · 수정 · 조회</td><td>JexStudio 작업</td></tr>
+        <tr><td><code data-no-md>flow</code></td><td>사용자 단위 · 각자 PC에 직접 설치 (<strong>시험 중</strong>)</td><td>Flow 업무에 올라온 기획서를 찾아 읽고, 분석 결과를 그 업무 댓글로 돌려주기</td><td>메인 Claude (시험 중)</td></tr>
       </tbody>
     </table>
+
+    <h3>Flow 연결 — 기획서를 받아 분석 결과를 돌려주기 (시험 중)</h3>
+    <p>기획실은 기획서를 <strong>Flow</strong>(사내 업무 협업 도구)의 업무 글에 첨부해 올립니다. 지금까지는 개발자가 그 파일을 직접 찾아 내려받고, 분석한 내용을 사람이 다시 옮겨 적었습니다. <code data-no-md>flow</code> 연결은 이 왕복을 Claude Code 세션 안에서 끝내려는 시도입니다.</p>
+    <p>해 보려는 한 바퀴는 이렇습니다.</p>
+    <ol class="step-list">
+      <li><strong>찾기</strong> — 내가 담당이면서 아직 끝나지 않았고 첨부가 있는 업무를 골라냅니다.</li>
+      <li><strong>읽기</strong> — 그 업무에 붙은 기획서 파일과 지금까지의 댓글을 읽습니다.</li>
+      <li><strong>분석</strong> — 하네스의 <code data-no-md class="inl">/dev-interview</code> 흐름으로 기획서를 소스와 맞춰 봅니다.</li>
+      <li><strong>회신</strong> — 사람이 검토해 승인한 결과만 그 업무의 댓글로 올립니다.</li>
+    </ol>
+    <div class="note">
+      <strong>아직 시험 단계입니다.</strong> 연결이 되는지, 무엇이 되고 무엇이 안 되는지를 확인하는 1단계까지 마쳤습니다. 도구는 39가지가 오지만 <strong>지금 열어 둔 것은 조회 9가지뿐</strong>이고, 그것도 각자 PC의 개인 설정에만 두었습니다. 하네스 공용 설정(<code data-no-md>.mcp.json</code> · <code data-no-md>settings.json</code>)에는 넣지 않았습니다 — <strong>계속 쓸지 판단한 뒤에 옮깁니다</strong>. 확인해 보니 첨부한 문서를 읽을 때 표 같은 서식이 사라지고 긴 파일은 중간에서 잘렸습니다. 이 제약을 어떻게 다룰지는 기획실과 협의 중입니다.
+    </div>
 
     <h3>JexStudio 연결 교체 (2026-08-08)</h3>
     <p>기존에는 브라우저를 자동으로 조작하는 방식(<code data-no-md>jexstudio30-mcp</code>)이었는데, 브라우저 없이 서버와 직접 통신하는 방식(<code data-no-md>jexstudio-http</code>)으로 바뀌었습니다. <strong>도구 이름은 그대로이고 앞에 붙는 서버 이름만 달라집니다.</strong></p>
@@ -1473,6 +1487,7 @@ a:hover, .text-link:hover { border-bottom-color: var(--color-primary); }
         <tr><td>playwright</td><td>개발서버 주소만 열기</td><td>운영 화면 접속 금지(개인정보가 화면에 잡히는 것 방지). 스크린샷 등은 로컬에만 둡니다.</td><td>화면 상태를 값으로 직접 확인하고, 안 되면 승인받아 수동으로 확인합니다.</td></tr>
         <tr><td>jexstudio-http</td><td>부품 검색 · 등록 · 수정 (<strong>프로파일 <code data-no-md>제로</code> 지정 필수</strong>)</td><td><strong>비밀번호 · 인증키 · DB 접속 정보를 넣지 않습니다</strong> (호출 값과 응답이 외부 AI 서버를 거침). 프로파일을 빠뜨리면 다른 프로젝트로 등록됩니다.</td><td>등록 후 <code data-no-md>svn update</code>로 받아온 XML 원문을 직접 확인합니다.</td></tr>
         <tr><td>context7</td><td>공개된 라이브러리 문서 조회</td><td>내부 코드 · 설정을 보내지 않습니다.</td><td>결과를 실제 소스와 맞춰 봅니다.</td></tr>
+        <tr><td>flow</td><td>업무 · 기획서 · 댓글 <strong>조회 9가지만</strong> 열어 둠</td><td>댓글 등록 · 상태 변경 같은 쓰기는 <strong>시험용 보드에서만</strong> 합니다. Flow에는 글과 댓글을 지우는 기능이 없어 잘못 올리면 되돌릴 수 없습니다.</td><td>올린 댓글을 다시 조회해 확인합니다. 회신 내용은 사람이 먼저 승인합니다.</td></tr>
       </tbody>
     </table>
   </section>
@@ -1656,6 +1671,7 @@ a:hover, .text-link:hover { border-bottom-color: var(--color-primary); }
       <li><strong>담당 AI를 못 쓸 때의 정식 경로</strong> (SECTION 4 · 8) — 세션 설정으로 담당 AI를 부를 수 없으면 메인이 같은 기준으로 대신하는 것을 정식으로 인정했습니다. 대신 교차 확인을 별도 단계로 세우고, 대신했다는 사실을 결과물에 남기게 했습니다.</li>
       <li><strong>배포 여부 판단 기준</strong> (SECTION 3) — 운영에 이미 나갔는지는 <strong>배포현황</strong>으로만 판단합니다. 배포후보 목록은 지난 배포가 걸러지지 않아 판단에 쓸 수 없습니다. 파일이 통째로 나가므로, 같이 딸려 나가는 다른 사람의 변경도 담기 전에 확인하도록 했습니다.</li>
       <li><strong>검증 도구를 문서에서 지목하지 않음</strong> (SECTION 4) — 검증에 쓰는 도구는 각자 PC에만 있어서, 하네스가 특정 파일을 지목하면 그 파일이 없는 사람에게는 그대로 막힙니다. 이제 세션마다 사용자에게 먼저 묻고, 없으면 그 자리에서 만듭니다.</li>
+      <li><strong>Flow 연결 추가</strong> (SECTION 9) — 기획실이 Flow 업무에 올린 기획서를 세션에서 바로 읽고 분석 결과를 그 업무 댓글로 돌려주는 <code data-no-md>flow</code> 연결을 시험하고 있습니다. 무엇을 해 보려는지와 지금 열어 둔 범위를 적었습니다. <strong>아직 하네스 공용 설정에는 넣지 않았습니다.</strong></li>
       <li><strong>파일 구조 갱신</strong> (SECTION 2) — 새로 생긴 <code data-no-md>guide-zero-api.md</code>를 트리에 반영했습니다(원문 미리보기 98개 → 99개).</li>
     </ul>
 
@@ -1765,6 +1781,7 @@ a:hover, .text-link:hover { border-bottom-color: var(--color-primary); }
         <tr><td>RECORD (반복부)</td><td>같은 형태의 항목이 여러 번 반복되는 구조. 새 JexStudio 연결에서는 도구로 만들 수 있습니다.</td></tr>
         <tr><td><code data-no-md>.jct</code> / <code data-no-md>.act</code></td><td>개발서버를 부를 때 붙이는 확장자 — 데이터만 받는 API는 <code data-no-md>.jct</code>, 화면을 그리는 것은 <code data-no-md>.act</code>.</td></tr>
         <tr><td>E001 / E002 / E003 / E999</td><td>표준 오류 코드 — 입력값 오류 / DB 오류 / 업무 규칙 오류 / 그 밖의 오류. 응답의 <code data-no-md>RSPS_CD</code> · <code data-no-md>RSPS_MSG</code>에서 확인합니다.</td></tr>
+        <tr><td>Flow</td><td>사내 업무 협업 도구. 기획실이 기획서를 업무 글에 첨부해 올리고, 개발자는 그 업무의 댓글로 결과를 돌려줍니다. <code data-no-md>flow</code> MCP로 이 과정을 세션에서 다루는 것을 시험하고 있습니다.</td></tr>
         <tr><td>통합 API</td><td>바깥 기관과 앱이 부르는 제로페이 공통 API(<code data-no-md>zero-api</code>)와 그에 딸린 웹뷰 화면. 규격과 응답코드는 <code data-no-md>guide-zero-api.md</code>가 정합니다.</td></tr>
         <tr><td>응답코드 확정 사전</td><td>통합 API가 돌려줄 수 있는 응답코드 목록. 여기 있는 코드만 쓰고, 새 코드가 필요하면 승인을 받아 사전에 함께 등록합니다.</td></tr>
         <tr><td>2층 응답</td><td>서버끼리 주고받는 응답이 두 겹이라는 뜻. 겉의 <code data-no-md>COMM.RC</code>는 전문이 제대로 왔는지, 안의 <code data-no-md>DETAIL.RES_CD</code>는 업무가 성공했는지를 나타냅니다. 겉만 보고 성공으로 판단하면 안 됩니다.</td></tr>
