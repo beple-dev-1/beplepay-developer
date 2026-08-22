@@ -1,6 +1,8 @@
 # beplepay-developer
 
-Vercel 호스팅 레포 (프로젝트명: `beplepay-developer`)
+Vercel 호스팅 레포 (Vercel 프로젝트명: `we-adp-developer-beple`)
+
+배포 주소: https://we-adp-developer-beple.vercel.app
 
 ## 구조
 
@@ -9,7 +11,8 @@ index.html              최신 버전으로 보내는 리다이렉트 스텁 (�
 docs/
   v1.0.0/               버전별 폴더 — 배포 후에도 영구 보존
   v1.0.1/
-  v1.0.2/               ← 현재 최신
+  v1.0.2/
+  v1.0.3/               ← 현재 최신
 ```
 
 각 버전 폴더에는 원본 파일명의 HTML과, 짧은 URL(`/docs/vX.Y.Z/`)용
@@ -17,11 +20,13 @@ docs/
 
 ## URL
 
+기준 도메인: `https://we-adp-developer-beple.vercel.app`
+
 | 경로 | 내용 |
 |---|---|
 | `/` | 최신 버전으로 자동 이동 |
-| `/docs/v1.0.2/` | v1.0.2 (짧은 URL) |
-| `/docs/v1.0.2/WE-ADP%20for%20BEPLE%20Developer_v1.0.2.html` | v1.0.2 정식 경로 |
+| `/docs/v1.0.3/` | v1.0.3 (짧은 URL) |
+| `/docs/v1.0.3/WE-ADP%20for%20BEPLE%20Developer_v1.0.3.html` | v1.0.3 정식 경로 |
 
 ## 새 버전 추가 절차
 
